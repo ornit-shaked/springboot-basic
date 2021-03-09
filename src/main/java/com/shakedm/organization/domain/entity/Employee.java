@@ -44,8 +44,7 @@ public class Employee {
 
     @ElementCollection
     private List<Report> reports;
-
-
+    
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "directManager")
     private List<Employee> employees;
 

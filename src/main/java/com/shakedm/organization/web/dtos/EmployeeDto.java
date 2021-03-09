@@ -20,7 +20,7 @@ public class EmployeeDto {
     private String firstName;
     private String lastName;
     private String position;
-    private Employee directManager;
+    private Long directManagerId;
     private List<Task> tasks;
     private List<Report> reports;
 }

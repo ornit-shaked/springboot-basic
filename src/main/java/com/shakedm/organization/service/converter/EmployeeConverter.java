@@ -15,35 +15,26 @@ import java.util.stream.Collectors;
  */
 @UtilityClass
 public class EmployeeConverter {
-
-    public EmployeeDto convert(Employee entity) {
-        return EmployeeDto.builder()
-                .id(entity.getId())
-                .type(EmployeeType.valueOf(entity.getType()))
-                .firstName(entity.getFirstName())
-                .lastName(entity.getLastName())
-                .position(entity.getPosition())
-                .directManager(entity.getDirectManager())
-                .reports(entity.getReports())
-                .tasks(entity.getTasks())
-                .build();
-    }
-
-    public List<EmployeeDto> convert(List<Employee> entities) {
-        if (CollectionUtils.isEmpty(entities)) {
-            return new ArrayList<>();
-        }
-        return entities.stream()
-                .map(entity -> convert(entity))
-                .collect(Collectors.toList());
-    }
-
-    public Employee convert(EmployeeDto dto) {
-        return Employee.builder()
-                .firstName(dto.getFirstName())
-                .lastName(dto.getLastName())
-                .position(dto.getPosition())
-                .directManager(dto.getDirectManager())
-                .build();
-    }
+	
+	public EmployeeDto convert(Employee entity) {
+		return EmployeeDto.builder()
+				.id(entity.getId())
+				.type(EmployeeType.valueOf(entity.getType()))
+				.firstName(entity.getFirstName())
+				.lastName(entity.getLastName())
+				.position(entity.getPosition())
+				.directManagerId(entity.getDirectManager() != null ? entity.getDirectManager().getId() : null)
+				.reports(entity.getReports())
+				.tasks(entity.getTasks())
+				.build();
+	}
+	
+	public List<EmployeeDto> convert(List<Employee> entities) {
+		if (CollectionUtils.isEmpty(entities)) {
+			return new ArrayList<>();
+		}
+		return entities.stream()
+				.map(entity -> convert(entity))
+				.collect(Collectors.toList());
+	}
 }
